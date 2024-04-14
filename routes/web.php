@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BiografyController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\GaleryController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +19,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [HomeController::class, 'Home']);
+Route::get('/biografy', [BiografyController::class, 'Biografy']);
+Route::get('/galery', [GaleryController::class, 'Galery']);
+Route::get('/tentang', [AboutController::class, 'About']);
+Route::get('/login', [AuthController::class, 'Login']);
+Route::get('/register', [AuthController::class, 'Register']);
+Route::get('/kontak', [ContactController::class, 'Contact']);
+Route::get('/dashboard', function () {
+    return view('superadmin.dashboard');
 });
