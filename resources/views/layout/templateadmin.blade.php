@@ -256,6 +256,23 @@
                     </a>
                 </li>
                 <li>
+                    <a href="/bidang"
+                        class="flex items-center p-2 text-blue-900 rounded-lg dark:text-white hover:bg-blue-100 dark:hover:bg-blue-700 group">
+                        <svg class="flex-shrink-0 w-5 h-5 text-blue-500 transition duration-75 dark:text-blue-400 group-hover:text-blue-900 dark:group-hover:text-white"
+                            xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 50 50" viewBox="0 0 50 50"
+                            id="graduation" fill="currentColor">
+                            <path
+                                d="M29.2211 28.939h-2.5022c.3372.5874.6854 1.1858 1.0335 1.7733-.5222.6201-1.0553 1.2619-1.5775 1.9038h-2.1758c-.5875-.6528-1.1641-1.2837-1.7733-1.9365.3699-.5874.6963-1.1641 1.0444-1.7406h-2.4804c-5.5375 0-10.5636 2.2411-14.1863 5.8747-3.6337 3.6337-5.8747 8.6489-5.8747 14.1864h48.5426C49.2713 37.9252 40.296 28.939 29.2211 28.939zM24.9782 46.5632v.0326c-1.1314-1.5557-2.252-3.1005-3.3834-4.6345.7833-3.0352 1.5557-6.0705 2.3281-9.1058h2.0779c.805 3.0461 1.5993 6.0815 2.4043 9.1276C27.2629 43.517 26.1206 45.0401 24.9782 46.5632zM15.906 17.3827c.1803 4.8732 4.1769 8.7713 9.0941 8.7713s8.9138-3.8981 9.0941-8.7713H15.906zM33.7032 13.5111">
+                            </path>
+                            <path
+                                d="M25.0227,1.0002L8.1602,8.4342l8.25,3.6717L16.386,14.599h17.0371l-0.105-2.5838l6.482-2.7238v9.3422
+                            c-1.5055,0.4667-2.6064,1.8538-2.6064,3.5127v3.3318h7.3887v-3.3318c0-1.659-1.1009-3.046-2.6064-3.5127V8.4455">
+                            </path>
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Bidang</span>
+                    </a>
+                </li>
+                <li>
                     <a href="/profesi"
                         class="flex items-center p-2 text-blue-900 rounded-lg dark:text-white hover:bg-blue-100 dark:hover:bg-blue-700 group">
                         <svg class="flex-shrink-0 w-5 h-5 text-blue-500 transition duration-75 dark:text-blue-400 group-hover:text-blue-900 dark:group-hover:text-white"

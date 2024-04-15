@@ -1,6 +1,6 @@
 @extends('layout.templateadmin')
 @section('content')
-    <h1 class="text-center text-blue-700 py-5 text-2xl">Data user</h1>
+    <h1 class="text-center text-blue-700 py-5 text-2xl">{{ $title ?? '' }}</h1>
 
     <div>
         @if (session('success'))

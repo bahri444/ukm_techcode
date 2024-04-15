@@ -1,13 +1,17 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AboutUkmController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BidangController;
 use App\Http\Controllers\BiografyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GaleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriModulController;
+use App\Http\Controllers\KategoriKegiatanController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\ProfesiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,3 +52,27 @@ Route::get('/kategorimodul', [KategoriModulController::class, 'AllKategoriModul'
 Route::post('/addkategorimodul', [KategoriModulController::class, 'AddKategoriModul']);
 Route::post('/updatekategorimodul', [KategoriModulController::class, 'UpdateKategoriModul']);
 Route::get('/deletekategorimodul/{uuid}', [KategoriModulController::class, 'DeleteKategoriModul']);
+
+Route::get('/kategorikegiatan', [KategoriKegiatanController::class, 'AllKategoriKegiatan']);
+Route::post('/addkategorikegiatan', [KategoriKegiatanController::class, 'AddKategoriKegiatan']);
+Route::post('/updatekategorikegiatan', [KategoriKegiatanController::class, 'UpdateKategoriKegiatan']);
+Route::get('/deletekategorikegiatan/{uuid}', [KategoriKegiatanController::class, 'DeleteKategoriKegiatan']);
+
+
+
+
+Route::get('/bidang', [BidangController::class, 'AllBidang']);
+Route::post('/addbidang', [BidangController::class, 'AddBidang']);
+Route::post('/updatebidang', [BidangController::class, 'UpdateBidang']);
+Route::get('/deletebidang/{uuid}', [BidangController::class, 'DeleteBidang']);
+
+Route::get('/profesi', [ProfesiController::class, 'AllProfesi']);
+Route::post('/addprofesi', [ProfesiController::class, 'AddProfesi']);
+Route::post('/updateprofesi', [ProfesiController::class, 'UpdateProfesi']);
+Route::get('/deleteprofesi/{uuid}', [ProfesiController::class, 'DeleteProfesi']);
+
+Route::get('/ukm', [AboutUkmController::class, 'AllAboutUkm']);
+Route::get('/ukmbyuuid/{uuid}', [AboutUkmController::class, 'ByUuidAboutUkm']);
+Route::post('/addukm', [AboutUkmController::class, 'AddAboutUkm']);
+Route::post('/updateukm', [AboutUkmController::class, 'UpdateAboutUkm']);
+Route::get('/deleteukm/{uuid}', [AboutUkmController::class, 'DeleteAboutUkm']);

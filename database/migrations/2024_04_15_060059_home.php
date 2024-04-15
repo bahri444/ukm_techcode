@@ -8,15 +8,17 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('kategori_kegiatan', function (Blueprint $table) {
-            $table->uuid('kategori_uuid')->primary();
-            $table->string('nama_kategori_kegiatan', 100);
+        Schema::create('home', function (Blueprint $table) {
+            $table->uuid('home_uuid')->primary();
+            $table->string('title', 40);
+            $table->longText('deskripsi');
+            $table->string('banner', 150);
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('kategori_kegiatan');
+        Schema::dropIfExists('home');
     }
 };

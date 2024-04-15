@@ -8,18 +8,20 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('profesi', function (Blueprint $table) {
-            $table->uuid('profesi_uuid')->primary();
+        Schema::create('kelas_member', function (Blueprint $table) {
+            $table->uuid('kelas_member_uuid')->primary();
+            $table->foreignUuid('kelas_uuid');
             $table->foreignUuid('user_uuid');
-            $table->foreignUuid('bidang_uuid');
+            $table->date('mulai');
+            $table->date('selesai');
             $table->timestamps();
+            $table->foreign('kelas_uuid')->references('kelas_uuid')->on('kelas')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('user_uuid')->references('user_uuid')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreign('bidang_uuid')->references('bidang_uuid')->on('bidang')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('profesi');
+        Schema::dropIfExists('kelas_member');
     }
 };

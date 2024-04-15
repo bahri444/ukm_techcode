@@ -8,15 +8,16 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('kategori_kegiatan', function (Blueprint $table) {
-            $table->uuid('kategori_uuid')->primary();
-            $table->string('nama_kategori_kegiatan', 100);
+        Schema::create('saran', function (Blueprint $table) {
+            $table->uuid('saran_uuid')->primary();
+            $table->string('kode_member', 20);
+            $table->longText('teks_saran');
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('kategori_kegiatan');
+        Schema::dropIfExists('saran');
     }
 };
