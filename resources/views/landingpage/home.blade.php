@@ -22,15 +22,16 @@
         @foreach ($data as $val)
             <div class="md:flex py-1.5">
                 <div class="mt-2 md:mt-0 md:mr-6 py-8 mr-8">
-                    <h1 class="text-3xl font-semibold text-slate-800 md:text-2xl">
+                    <h1 class="text-3xl font-semibold text-slate-800 md:text-2xl pl-5">
                         {{ $val->title }}
                     </h1>
-                    <p class="mt-2 text-slate-700 text-justify lg:w-5/6 md:w-2/3">
+                    <p class="mt-2 text-slate-700 text-justify lg:w-5/6 md:w-2/3 pl-5">
                         {{ $val->deskripsi }}
                     </p>
                 </div>
                 <div class="md:flex-shrink-0 mx-auto">
-                    <img class="h-auto max-w-sm rounded-lg" src="{{ $val->banner }}" alt="Woman paying for a purchase" />
+                    <img class="h-auto max-w-sm rounded-lg mx-auto" src="{{ $val->banner }}"
+                        alt="Woman paying for a purchase" />
                 </div>
             </div>
         @endforeach
