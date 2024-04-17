@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HomeSetup;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function Home()
     {
-        return view('landingpage.home', ['title' => 'index']);
+        $data = HomeSetup::all();
+        return view('landingpage.home', [
+            'title' => 'index',
+            'data' => $data
+        ]);
     }
 }

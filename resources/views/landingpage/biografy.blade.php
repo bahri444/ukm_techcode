@@ -8,26 +8,23 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 mt-5">
-            <div class="max-w-md mx-auto bg-white rounded-md shadow-md overflow-hidden md:max-w-2xl mr-2 ml-2">
-                <div class="md:flex">
-                    <div class="md:shrink-0">
-                        <img class="lg:h-48 lg:w-48 object-cover md:h-48 md:w-48"
-                            src="{{ asset('assets') }}/images/bahri.jpeg" alt="Modern building architecture" />
-                    </div>
-                    <div class="p-8">
-                        <div class="uppercase tracking-wide text-lg text-indigo-500 font-semibold">
-                            SAEPUL BAHRI
+            @foreach ($data as $val)
+                <div class="max-w-md mx-auto bg-white rounded-md shadow-md overflow-hidden md:max-w-2xl mr-2 ml-2 mt-3">
+                    <div class="md:flex">
+                        <div class="md:shrink-0">
+                            <img class="md:w-32 md:h-auto object-cover" src="{{ $val['foto_member'] }}" alt="404" />
                         </div>
-                        <a href="#"
-                            class="block mt-1 text-sm leading-tight font-medium text-black hover:underline">Back-end
-                            enginer</a>
-                        <p class="mt-2 text-slate-500 text-sm">
-                            Retaslah ketidaktahuanmu dengan belajar, akan tetapi belajar akan
-                            membuatmu semakin merasa bodoh
-                        </p>
+                        <div class="p-8">
+                            <div class="uppercase tracking-wide text-lg text-indigo-500 font-semibold">
+                                {{ $val['nama_lengkap'] }}
+                            </div>
+                            <p class="block mt-1 text-sm leading-tight font-medium text-black hover:underline">
+                                {{ $val['nama_profesi'] }}
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
 @endsection

@@ -36,6 +36,9 @@
                         No
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Kode member
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Nama lengkap
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -61,6 +64,9 @@
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{ $nomor++ }}
                     </th>
+                    <td class="px-6 py-4">
+                        {{ $val->kode_member }}
+                    </td>
                     <td class="px-6 py-4">
                         {{ $val->nama_lengkap }}
                     </td>
@@ -89,6 +95,21 @@
                                     </path>
                                     <path
                                         d="M9.455,10.544l-.789,3.614a1,1,0,0,0,.271.921,1.038,1.038,0,0,0,.92.269l3.606-.791a1,1,0,0,0,.494-.271l9.114-9.114a3,3,0,0,0,0-4.243,3.07,3.07,0,0,0-4.242,0l-9.1,9.123A1,1,0,0,0,9.455,10.544Zm10.788-8.2a1.022,1.022,0,0,1,1.414,0,1.009,1.009,0,0,1,0,1.413l-.707.707L19.536,3.05Zm-8.9,8.914,6.774-6.791,1.4,1.407-6.777,6.793-1.795.394Z">
+                                    </path>
+                                </svg>
+                            </button>
+                            <!-- tombol validasi data user -->
+                            <button data-modal-target="modal_validasi{{ $val->user_uuid }}"
+                                data-modal-toggle="modal_validasi{{ $val->user_uuid }}" type="button"
+                                class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-3 py-1.5 text-center me-1 mb-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" stroke-linejoin="round"
+                                    stroke-miterlimit="2" clip-rule="evenodd" viewBox="0 0 8 8" fill="#f1f5f9"
+                                    width="25" height="25" class="mx-auto mb-1 mt-1" id="user-check">
+                                    <path
+                                        d="M2.88.24c-.927 0-1.68.753-1.68 1.68 0 .927.753 1.68 1.68 1.68.927 0 1.68-.753 1.68-1.68 0-.927-.753-1.68-1.68-1.68zm0 .48c.662 0 1.2.538 1.2 1.2 0 .662-.538 1.2-1.2 1.2-.662 0-1.2-.538-1.2-1.2 0-.662.538-1.2 1.2-1.2zM5.28 3.12c-1.192 0-2.16.968-2.16 2.16 0 1.192.968 2.16 2.16 2.16 1.192 0 2.16-.968 2.16-2.16 0-1.192-.968-2.16-2.16-2.16zm0 .48c.927 0 1.68.753 1.68 1.68 0 .927-.753 1.68-1.68 1.68-.927 0-1.68-.753-1.68-1.68 0-.927.753-1.68 1.68-1.68z">
+                                    </path>
+                                    <path
+                                        d="M4.347 5.45l.509.509c.045.045.106.07.169.07.064 0 .125-.025.17-.07l1.018-1.018c.094-.094.094-.246 0-.34-.093-.093-.245-.093-.339 0l-.849.849c0 0-.339-.34-.339-.34-.094-.093-.246-.093-.339 0-.094.094-.094.246 0 .34zM.24 6.72l0 0c0 .191.076.374.211.509.135.135.318.211.509.211l0 0 2.174 0c.133 0 .24-.108.24-.24 0-.132-.107-.24-.24-.24l-2.174 0c-.064 0-.125-.025-.17-.07l-.001-.001c-.044-.045-.069-.106-.069-.169l0 0c0-1.095.813-1.999 1.869-2.141.131-.017.223-.138.205-.269-.017-.132-.138-.224-.269-.206-1.29.173-2.285 1.278-2.285 2.616z">
                                     </path>
                                 </svg>
                             </button>
@@ -257,9 +278,9 @@
         </div>
     </div>
 
-    <!-- modal tambah data matakuliah -->
+    <!-- modal tambah data user -->
     <?php foreach ($data as $rows) : ?>
-    <!-- modal edit data matakuliah -->
+    <!-- modal edit data user -->
     <div id="modal_edit{{ $rows->user_uuid }}" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-2xl max-h-full">
@@ -283,7 +304,7 @@
                 </div>
                 <!-- Modal body -->
                 <div class="p-4 md:p-5 space-y-4">
-                    <form method="post" action="updateuser" class="max-w-sm mx-auto" enctype="multipart/form-data">
+                    <form method="post" action="/updateuser" class="max-w-sm mx-auto" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="user_uuid" value="{{ $rows->user_uuid }}">
                         <div>
@@ -385,6 +406,102 @@
         </div>
     </div>
 
+    <!-- modal validasi data user -->
+    <div id="modal_validasi{{ $rows->user_uuid }}" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-2xl max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <!-- Modal header -->
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                        Edit {{ $title ?? '' }}
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="modal_validasi{{ $rows->user_uuid }}">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-4 md:p-5 space-y-4">
+                    <form method="post" action="/uservalidate" class="max-w-sm mx-auto" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="user_uuid" value="{{ $rows->user_uuid }}">
+                        <div>
+                            <label for="small-input"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode member</label>
+                            <input name="kode_member" type="text" value="{{ $rows->kode_member }}" id="small-input"
+                                placeholder="masukkan kode member"
+                                class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="small-input"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Github</label>
+                            <input name="github" type="text" value="{{ $rows->github }}" id="small-input"
+                                placeholder="masukkan link github"
+                                class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        </div>
+                        <label for="countries"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
+                        <select id="countries" name="role"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="{{ $rows->role }}" selected>{{ $rows->role }}</option>
+                            <option value="superadmin">Superadmin</option>
+                            <option value="admin">Admin</option>
+                            <option value="member">Member</option>
+                        </select>
+                        <div>
+                            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Jenis anggota
+                            </label>
+                            <select id="countries" name="jenis_anggota"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="{{ $rows->jenis_anggota }}" selected>{{ $rows->jenis_anggota }}</option>
+                                <option value="percobaan">Percobaan</option>
+                                <option value="pasti">Pasti</option>
+                                <option value="kehormatan">Kehormatan</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Status anggota
+                            </label>
+                            <select id="countries" name="status_anggota"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="{{ $rows->status_anggota }}" selected>{{ $rows->status_anggota }}</option>
+                                <option value="nonaktif">Nonaktif</option>
+                                <option value="aktif">Aktif</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="small-input"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Angkatan</label>
+                            <input name="angkatan" type="number" value="{{ $rows->angkatan }}" id="small-input"
+                                class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                            <button data-modal-hide="modal_validasi{{ $rows->user_uuid }}" type="button"
+                                class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-1 mb-1">
+                                Cancel
+                            </button>
+                            <button data-modal-hide="modal_validasi{{ $rows->user_uuid }}" type="submit"
+                                class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-1 mb-1">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal hapus -->
     <div id="modalHapus{{ $rows->user_uuid }}" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -416,7 +533,7 @@
                             class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-1 mb-1">
                             Tidak
                         </button>
-                        <a href="deleteuser/{{ $rows->user_uuid }}"
+                        <a href="/deleteuser/{{ $rows->user_uuid }}"
                             class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-1 mb-1">
                             Hapus
                         </a>

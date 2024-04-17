@@ -1,10 +1,28 @@
 @extends('layout.templatelandingpage')
 @section('content')
-    <div class="box bg-blue-50 sm:mx-auto sm:w-full sm:max-w-lg p-5 rounded relative mt-10">
+    <div class="mx-auto mt-8 max-w-2xl p-6 bg-blue-50 border border-gray-200 rounded-lg shadow">
+        <div>
+            @if (session('success'))
+                <p class="alert alert-success"></p>
+
+                <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                    role="alert">
+                    <span class="font-medium">{{ session('success') }}</span>
+                </div>
+            @endif
+            @if (is_object($errors) && $errors->any())
+                @foreach ($errors->all() as $err)
+                    <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                        role="alert">
+                        <span class="font-medium">{{ $err }}</span>
+                    </div>
+                @endforeach
+            @endif
+        </div>
         <!-- ICON SVG -->
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" data-name="Layer 2" viewBox="0 0 48 48" stroke="currentColor"
-                width="100" height="100" class="text-blue-600 mx-auto" id="graduate">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" data-name="Layer 2" viewBox="0 0 48 48"
+                stroke="currentColor" width="100" height="100" class="text-blue-600 mx-auto" id="graduate">
                 <path stroke-linecap="round" stroke-linejoin="round"
                     d="M30.877 32.005a3.4 3.4 0 0 0-1.743-.355 3.072 3.072 0 0 0-.95.25l3.039 1.227a29.512 29.512 0 0 0-2.454 3.386A12.315 12.315 0 0 0 27.5 39.156a5.219 5.219 0 0 0-.321 2.324c1.45-.324 2.984-1.92 3.975-3.83a7.353 7.353 0 0 0 .978-4.018A2.218 2.218 0 0 0 30.877 32.005zM10.372 16.634v4.915L27.235 27.56h.01a33.269 33.269 0 0 0 3.861-.22c3.287-.48 5.416-1.4 5.416-2.368v-8.1L26.17 20.38z">
                 </path>
@@ -20,17 +38,19 @@
             </svg>
             <h2 class="text-center text-2xl font-bold leading-9 tracking-tight text-slate-900">
                 SIGN IN <br />
-                E-LEARNING TECHCODE
+                UKM TECHCODE
             </h2>
         </div>
         <!-- END ICON SVG -->
         <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form class="space-y-6" action="#" method="POST">
+            <form class="space-y-6" action="/postlogin" method="POST">
+                @csrf
                 <!-- INPUT EMAIL -->
                 <div>
-                    <label for="email" class="block text-sm font-medium leading-6 text-slate-900">Email address</label>
+                    <label for="email" class="block text-sm font-medium leading-6 text-slate-900">Username</label>
                     <div class="mt-2">
-                        <input id="email" name="email" type="email" autocomplete="email" required
+                        <input id="email" name="kode_member" type="text" autocomplete="email" required
+                            placeholder="masukkan username"
                             class="block w-full rounded-md border-0 py-1.5 px-2 text-slate-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             autofocus />
                     </div>
@@ -42,6 +62,7 @@
                     </div>
                     <div class="mt-2">
                         <input id="password" name="password" type="password" autocomplete="current-password" required
+                            placeholder="masukkan password"
                             class="block w-full rounded-md border-0 py-1.5 px-2 text-slate-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                     </div>
                 </div>
@@ -59,14 +80,14 @@
                     <div class="mx-auto text-center">
                         <p>
                             Dont have an account?
-                            <NuxtLink to="/auth/register"
-                                class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Register</NuxtLink>
+                            <a href="/register"
+                                class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Register</a>
                         </p>
                     </div>
                 </div>
-                <div class="text-sm text-center">
+                {{-- <div class="text-sm text-center">
                     <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

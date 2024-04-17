@@ -141,6 +141,32 @@ class UserController extends Controller
             return redirect('/users')->withErrors(['errors' => 'Data gagal diedit: ' . $th->getMessage()])->withInput();
         }
     }
+    public function ValidasiUser(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'kode_member' => 'required',
+            'github' => 'required',
+            'role' => 'required',
+            'jenis_anggota' => 'required',
+            'status_anggota' => 'required',
+            'angkatan' => 'required',
+        ]);
+        // dd($validator);
+        try {
+            $user = User::find($request->user_uuid);
+            $user->kode_member = $request->kode_member;
+            $user->role = $request->role;
+            $user->github = $request->github;
+            $user->jenis_anggota = $request->jenis_anggota;
+            $user->status_anggota = $request->status_anggota;
+            $user->angkatan = $request->angkatan;
+            $user->save();
+
+            return redirect('/users')->with('success', 'Data berhasil di validasi');
+        } catch (\Throwable $th) {
+            return redirect('/users')->withErrors(['errors' => 'Data gagal validasi: ' . $th->getMessage()])->withInput();
+        }
+    }
     public function DeleteUser($uuid)
     {
         try {
