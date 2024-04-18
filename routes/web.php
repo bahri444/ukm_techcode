@@ -110,10 +110,16 @@ Route::middleware(['superadmin'])->group(function () {
     Route::get('/deletemodul/{uuid}', [ModulController::class, 'DeleteModul']);
 
     Route::get('/kelasmember', [KelasMemberController::class, 'AllKelasMember']);
+    Route::post('/addkelasmember', [KelasMemberController::class, 'AddKelasMember']);
+    Route::post('/updatekelasmember', [KelasMemberController::class, 'UpdateKelasMember']);
+    Route::post('/validasikelasmember', [KelasMemberController::class, 'ValidasiKelasMember']);
+    Route::get('/deletekelasmember/{uuid}', [KelasMemberController::class, 'DeleteKelasMember']);
 });
 Route::middleware(['member'])->group(function () {
     Route::get('/index', [MemberController::class, 'IndexMember'])->name('index');
     Route::post('/checkoutkelas', [MemberController::class, 'CheckoutKelas']);
     Route::get('/mykelas', [MemberController::class, 'MyLearnKelas']);
     Route::get('/myprofile', [MemberController::class, 'MyProfileAccount']);
+    Route::post('/updatefoto', [MemberController::class, 'UpdateFotoProfile']);
+    Route::post('/updatebiodata', [MemberController::class, 'UpdateBiodata']);
 });

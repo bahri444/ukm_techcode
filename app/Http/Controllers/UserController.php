@@ -136,7 +136,7 @@ class UserController extends Controller
             // dd($user);
             $user->save();
 
-            return redirect('/users')->with('success', 'Data berhasil ditambahkan');
+            return redirect('/users')->with('success', 'Data berhasil diedit');
         } catch (\Throwable $th) {
             return redirect('/users')->withErrors(['errors' => 'Data gagal diedit: ' . $th->getMessage()])->withInput();
         }

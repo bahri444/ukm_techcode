@@ -8,46 +8,36 @@
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">
                     {{ $val->nama_lengkap }}
                 </h5>
-                <div class="grid lg:grid-cols-2 lg:gap-2">
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        Email : {{ $val->email }}
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    ID : {{ $val->kode_member }}
+                </p>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    {{ $val->role }} {{ $val->jenis_anggota }} angkatan ke-{{ $val->angkatan }}
+                </p>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    Gender : {{ $val->gender }}
+                </p>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    Tgl. lahir : {{ $val->tanggal_lahir }}
+                </p>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    Alamat : {{ $val->alamat }}
+                </p>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    Email, {{ $val->email }}
+                </p>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    Github, {{ $val->github }}
+                </p>
+                @if ($val->status_anggota == 'aktif')
+                    <p class="mb-3 font-normal text-green-700 dark:text-green-400">
+                        Status anggota : {{ $val->status_anggota }}
                     </p>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        Role : {{ $val->role }}
+                @else
+                    <p class="mb-3 font-normal text-red-700 dark:text-red-400">
+                        Status anggota : {{ $val->status_anggota }}
                     </p>
-                </div>
-                <div class="grid lg:grid-cols-2 lg:gap-2">
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        Gender : {{ $val->gender }}
-                    </p>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        Tgl. lahir : {{ $val->tanggal_lahir }}
-                    </p>
-                </div>
-                <div class="grid lg:grid-cols-2 lg:gap-2">
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        Alamat : {{ $val->alamat }}
-                    </p>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        {{ $val->github }}
-                    </p>
-                </div>
-                <div class="grid lg:grid-cols-2 lg:gap-2">
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        Status : {{ $val->status_anggota }}
-                    </p>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        Jenis anggota : {{ $val->jenis_anggota }}
-                    </p>
-                </div>
-                <div class="grid lg:grid-cols-2 lg:gap-2">
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        Angkatan : {{ $val->angkatan }}
-                    </p>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        Kode member : {{ $val->kode_member }}
-                    </p>
-                </div>
+                @endif
             </div>
         </div>
     @endforeach

@@ -207,11 +207,25 @@
                             <input name="tanggal_lahir" type="date" id="small-input"
                                 class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
-                        <div>
-                            <label for="small-input"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
-                            <input name="gender" type="text" id="small-input"
-                                class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <div class="mt-6">
+                            <fieldset>
+                                <legend class="text-sm font-semibold leading-6 text-slate-900">
+                                    Gender
+                                </legend>
+                                <div class="mt-4 space-y-6 grid grid-col-1 gap-6">
+                                    <fieldset>
+                                        <input id="draft" class="peer/draft mr-2" type="radio" name="gender"
+                                            value="{{ 'laki-laki' }}" />
+                                        <label for="draft"
+                                            class="peer-checked/draft:text-sky-500 mr-10">Laki-laki</label>
+
+                                        <input id="published" class="peer/published mr-2" type="radio" name="gender"
+                                            value="{{ 'perempuan' }}" />
+                                        <label for="published"
+                                            class="peer-checked/published:text-sky-500">Perempuan</label>
+                                    </fieldset>
+                                </div>
+                            </fieldset>
                         </div>
                         <div>
                             <label for="small-input"
@@ -219,11 +233,14 @@
                             <input name="alamat" type="text" id="small-input"
                                 class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
-                        <div>
-                            <label for="small-input"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Foto</label>
-                            <input name="foto" type="file" id="small-input"
-                                class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <div class="col-span-full">
+                            <label for="my_foto" class="block text-sm font-medium leading-6 text-slate-900">Foto
+                                formal</label>
+                            <div class="mt-2">
+                                <input
+                                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                    id="my_foto" type="file" name="foto">
+                            </div>
                         </div>
                         <div>
                             <label for="small-input"
@@ -277,8 +294,8 @@
             </div>
         </div>
     </div>
+    <!-- end-modal tambah data user -->
 
-    <!-- modal tambah data user -->
     <?php foreach ($data as $rows) : ?>
     <!-- modal edit data user -->
     <div id="modal_edit{{ $rows->user_uuid }}" tabindex="-1" aria-hidden="true"
@@ -337,10 +354,16 @@
                                 class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                         <div>
-                            <label for="small-input"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
-                            <input name="gender" type="text" value="{{ $rows->gender }}" id="small-input"
-                                class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Gender
+                            </label>
+                            <select id="countries" name="gender"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="{{ $rows->gender }}" selected>{{ $rows->gender }}
+                                </option>
+                                <option value="laki-laki">Laki-laki</option>
+                                <option value="perempuan">Perempuan</option>
+                            </select>
                         </div>
                         <div>
                             <label for="small-input"
@@ -348,11 +371,14 @@
                             <input name="alamat" type="text" value="{{ $rows->alamat }}" id="small-input"
                                 class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
-                        <div>
-                            <label for="small-input"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Foto</label>
-                            <input name="foto" type="file" value="{{ $rows->foto }}" id="small-input"
-                                class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <div class="col-span-full">
+                            <label for="my_foto" class="block text-sm font-medium leading-6 text-slate-900">Foto
+                                formal</label>
+                            <div class="mt-2">
+                                <input
+                                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                    id="my_foto" type="file" name="foto">
+                            </div>
                         </div>
                         <div>
                             <label for="small-input"

@@ -21,16 +21,14 @@ class AuthController extends Controller
             'kode_member' => 'required',
             'password' => 'required',
         ]);
-        try {
-            $data = $request->only('kode_member', 'password');
-            if (Auth::attempt($data)) {
-                if (Auth::user()->role == 'superadmin') {
-                    return redirect()->route('dashboard')->withSuccess('Berhasil login');
-                }
-                return redirect()->route('index')->withSuccess('Berhasil login');
+        $data = $request->only('kode_member', 'password');
+        if (Auth::attempt($data)) {
+            if (Auth::user()->role == 'superadmin') {
+                return redirect()->route('dashboard')->withSuccess('Berhasil login');
             }
-        } catch (\Throwable $th) {
-            return redirect('/login')->withErrors(['errors' => 'daftar akun gagal, ' . $th->getMessage()])->withInput();
+            return redirect()->route('index')->withSuccess('Berhasil login');
+        } else {
+            return redirect('/login')->withErrors(['errors' => 'username atau password salah']);
         }
     }
     public function register()
@@ -52,8 +50,8 @@ class AuthController extends Controller
             $getFile = $request->file('foto');
             $getFileName = $getFile->hashName();
 
-            $direktory = "/foto_member/$getFileName";
-            $request->foto->move(public_path('/foto_member/'), $getFileName);
+            $direktory = "/profile_member/$getFileName";
+            $request->foto->move(public_path('/profile_member/'), $getFileName);
 
             // Buat instance user baru
             $user = new User([

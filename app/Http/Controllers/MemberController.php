@@ -7,6 +7,7 @@ use App\Models\KelasMember;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class MemberController extends Controller
@@ -53,5 +54,64 @@ class MemberController extends Controller
             'title' => 'profile',
             'data' => $data
         ]);
+    }
+    public function UpdateFotoProfile(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'foto' => 'required|image|mimes:png,jpg,jpeg|max:1024',
+        ]);
+        // Validasi input
+        if ($validator->fails()) {
+            return redirect('/myprofile')->withErrors($validator)->withInput();
+        }
+
+        try {
+            $user = User::find($request->user_uuid);
+            if ($user->foto) {
+                File::delete(public_path($user->foto));
+            }
+            $fotoInDirectory = "/profile_member/";
+            $getFile = $request->file('foto');
+            $getFileName = $getFile->hashName();
+            $getFile->move(public_path($fotoInDirectory), $getFileName);
+            $user->foto = $fotoInDirectory . $getFileName;
+            $user->save();
+
+            return redirect('/myprofile')->with('success', 'foto berhasil di perbarui');
+        } catch (\Throwable $th) {
+            return redirect('/myprofile')->withErrors(['errors' => 'foto gagal diperbarui: ' . $th->getMessage()])->withInput();
+        }
+    }
+    public function UpdateBiodata(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama_lengkap' => 'required',
+            'email' => 'required',
+            'tanggal_lahir' => 'required',
+            'gender' => 'required',
+            'alamat' => 'required',
+            'github' => 'required',
+        ]);
+        // Validasi input
+        if ($validator->fails()) {
+            return redirect('/myprofile')->withErrors($validator)->withInput();
+        }
+
+        try {
+            $user = User::find($request->user_uuid);
+
+            // Update data user dengan foto yang baru
+            $user->nama_lengkap = $request->nama_lengkap;
+            $user->email = $request->email;
+            $user->tanggal_lahir = $request->tanggal_lahir;
+            $user->gender = $request->gender;
+            $user->alamat = $request->alamat;
+            $user->github = $request->github;
+            $user->save();
+
+            return redirect('/myprofile')->with('success', 'biodata berhasil diperbarui');
+        } catch (\Throwable $th) {
+            return redirect('/myprofile')->withErrors(['errors' => 'biodata gagal diperbarui: ' . $th->getMessage()])->withInput();
+        }
     }
 }
