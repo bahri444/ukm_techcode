@@ -11,7 +11,7 @@ class SaranController extends Controller
 {
     public function AllSaran()
     {
-        $saran = Saran::all();
+        $saran = Saran::with('joinToUser')->get();
         return view(
             'superadmin.saran',
             [

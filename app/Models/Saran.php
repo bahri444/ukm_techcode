@@ -12,4 +12,8 @@ class Saran extends Model
     protected $primaryKey = 'saran_uuid';
     protected $table = 'saran';
     protected $fillable = ['kode_member', 'teks_saran'];
+    public function joinToUser()
+    {
+        return $this->hasMany(User::class, 'kode_member', 'kode_member');
+    }
 }

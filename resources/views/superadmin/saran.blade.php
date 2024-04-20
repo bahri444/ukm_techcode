@@ -48,34 +48,39 @@
                 </tr>
             </thead>
             <tbody>
-                <?php $nomor =1; foreach ($data as $val) : ?>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $nomor++ }}
-                    </th>
-                    <td class="px-6 py-4">
-                        {{ $val->kode_member }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ $val->teks_saran }}
-                    </td>
-                    <td class="px-6 py-4">
-                        <div class="flex space-x-4">
-                            <!-- tombol hapus data about ukm -->
-                            <button data-modal-target="modalHapus{{ $val->saran_uuid }}"
-                                data-modal-toggle="modalHapus{{ $val->saran_uuid }}" type="button"
-                                class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-3 py-1.5 text-center me-1 mb-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#f1f5f9" width="25"
-                                    height="25" class="mx-auto" id="trash">
-                                    <path
-                                        d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z">
-                                    </path>
-                                </svg>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
+                <?php $nomor = 1; ?>
+                @foreach ($data as $val)
+                    @foreach ($val->joinToUser as $row)
+                        <tr
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{ $nomor++ }}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ $row->nama_lengkap }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $val->teks_saran }}
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex space-x-4">
+                                    <!-- tombol hapus data about ukm -->
+                                    <button data-modal-target="modalHapus{{ $val->saran_uuid }}"
+                                        data-modal-toggle="modalHapus{{ $val->saran_uuid }}" type="button"
+                                        class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-3 py-1.5 text-center me-1 mb-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#f1f5f9"
+                                            width="25" height="25" class="mx-auto" id="trash">
+                                            <path
+                                                d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endforeach
             </tbody>
         </table>
     </div>
